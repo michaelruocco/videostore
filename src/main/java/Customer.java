@@ -30,9 +30,8 @@ public class Customer {
     }
 
     public String statement() {
-        totalAmount = 0;
-        frequentRenterPoints = 0;
-        String result = "Rental Record for " + getName() + "\n";
+        initialize();
+        String text = header();
 
         for (Rental each : rentals) {
             double thisAmount = 0;
@@ -58,16 +57,25 @@ public class Customer {
                     && each.getDaysRented() > 1)
                 frequentRenterPoints++;
 
-            result += "\t" + each.getMovie().getTitle() + "\t"
+            text += "\t" + each.getMovie().getTitle() + "\t"
                     + thisAmount + "\n";
             totalAmount += thisAmount;
 
         }
 
-        result += "You owed " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points\n";
+        text += "You owed " + totalAmount + "\n";
+        text += "You earned " + frequentRenterPoints + " frequent renter points\n";
 
-        return result;
+        return text;
+    }
+
+    private void initialize() {
+        totalAmount = 0;
+        frequentRenterPoints = 0;
+    }
+
+    private String header() {
+        return "Rental Record for " + name + "\n";
     }
 
 }
