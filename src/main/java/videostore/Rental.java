@@ -1,3 +1,4 @@
+import videostore.movie.Movie;
 
 public class Rental {
 

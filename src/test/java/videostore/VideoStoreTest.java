@@ -1,4 +1,8 @@
 import org.junit.jupiter.api.Test;
+import videostore.movie.ChildrensMovie;
+import videostore.movie.Movie;
+import videostore.movie.NewReleaseMovie;
+import videostore.movie.RegularMovie;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
