@@ -9,6 +9,10 @@ public class Rental {
         this.daysRented = daysRented;
     }
 
+    public String getTitle() {
+        return movie.getTitle();
+    }
+
     public int getDaysRented() {
         return daysRented;
     }
