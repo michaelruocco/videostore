@@ -1,19 +1,20 @@
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
-public class Customer {
+public class Statement {
 
-    private final String name;
+    private final String customerName;
     private final Collection<Rental> rentals = new ArrayList<>();
     private double totalAmount;
     private int frequentRenterPoints;
 
-    public Customer(String name) {
-        this.name = name;
+    public Statement(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void addRental(Rental rental) {
+    public void add(Rental rental) {
         rentals.add(rental);
     }
 
@@ -25,7 +26,7 @@ public class Customer {
         return frequentRenterPoints;
     }
 
-    public String statement() {
+    public String generate() {
         clearTotals();
         String text = header();
         text += rentalLines();
@@ -39,18 +40,16 @@ public class Customer {
     }
 
     private String header() {
-        return String.format("Rental Record for %s%n", name);
+        return String.format("Rental Record for %s%n", customerName);
     }
 
     private String rentalLines() {
-        String rentalLines = "";
-        for (Rental rental : rentals) {
-            rentalLines += rentalLine(rental);
-        }
-        return rentalLines;
+        return rentals.stream()
+                .map(this::toRentalLine)
+                .collect(Collectors.joining());
     }
 
-    private String rentalLine(Rental rental) {
+    private String toRentalLine(Rental rental) {
         frequentRenterPoints += rental.determineFrequentRenterPoints();
         double rentalAmount = rental.determineAmount();
         totalAmount += rentalAmount;
