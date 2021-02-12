@@ -17,10 +17,8 @@ class VideoStoreTest {
     void testSingleNewReleaseStatementTotals() {
         statement.add(new Rental(newReleaseMovie1, 3));
 
-        statement.generate();
-
-        assertThat(statement.getTotalAmount()).isEqualTo(9.0);
-        assertThat(statement.getFrequentRenterPoints()).isEqualTo(2);
+        assertThat(statement.calculateTotalAmount()).isEqualTo(9.0);
+        assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(2);
     }
 
     @Test
@@ -28,20 +26,16 @@ class VideoStoreTest {
         statement.add(new Rental(newReleaseMovie1, 3));
         statement.add(new Rental(newReleaseMovie2, 3));
 
-        statement.generate();
-
-        assertThat(statement.getTotalAmount()).isEqualTo(18.0);
-        assertThat(statement.getFrequentRenterPoints()).isEqualTo(4);
+        assertThat(statement.calculateTotalAmount()).isEqualTo(18.0);
+        assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(4);
     }
 
     @Test
     void testSingleChildrensStatementTotals() {
         statement.add(new Rental(childrensMovie, 3));
 
-        statement.generate();
-
-        assertThat(statement.getTotalAmount()).isEqualTo(1.5);
-        assertThat(statement.getFrequentRenterPoints()).isEqualTo(1);
+        assertThat(statement.calculateTotalAmount()).isEqualTo(1.5);
+        assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(1);
     }
 
     @Test
@@ -50,10 +44,8 @@ class VideoStoreTest {
         statement.add(new Rental(regular2, 2));
         statement.add(new Rental(regular3, 3));
 
-        statement.generate();
-
-        assertThat(statement.getTotalAmount()).isEqualTo(7.5);
-        assertThat(statement.getFrequentRenterPoints()).isEqualTo(3);
+        assertThat(statement.calculateTotalAmount()).isEqualTo(7.5);
+        assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(3);
     }
 
     @Test
