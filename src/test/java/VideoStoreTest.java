@@ -14,45 +14,50 @@ class VideoStoreTest {
     private final Statement statement = new Statement("Customer");
 
     @Test
-    void testSingleNewReleaseStatementTotals() {
-        statement.add(new Rental(newReleaseMovie1, 3));
+    void shouldCalculateTwoNewReleaseStatementTotalAmount() {
+        setupTwoNewReleaseMovieRentals();
 
-        assertThat(statement.calculateTotalAmount()).isEqualTo(9.0);
-        assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(2);
+        assertThat(statement.calculateTotalAmount()).isEqualTo(18.0);
     }
 
     @Test
-    void testDualNewReleaseStatementTotals() {
-        statement.add(new Rental(newReleaseMovie1, 3));
-        statement.add(new Rental(newReleaseMovie2, 3));
+    void shouldCalculateTwoNewReleaseStatementFrequentRenterPoints() {
+        setupTwoNewReleaseMovieRentals();
 
-        assertThat(statement.calculateTotalAmount()).isEqualTo(18.0);
         assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(4);
     }
 
     @Test
-    void testSingleChildrensStatementTotals() {
-        statement.add(new Rental(childrensMovie, 3));
+    void shouldCalculateSingleChildrensStatementTotalAmount() {
+        setupSingleChildrensMovieRental();
 
         assertThat(statement.calculateTotalAmount()).isEqualTo(1.5);
+    }
+
+    @Test
+    void shouldCalculateSingleChildrensStatementFrequentRenterPoints() {
+        setupSingleChildrensMovieRental();
+
         assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(1);
     }
 
     @Test
-    void testMultipleRegularStatementTotals() {
-        statement.add(new Rental(regular1, 1));
-        statement.add(new Rental(regular2, 2));
-        statement.add(new Rental(regular3, 3));
+    void shouldCalculateMultipleRegularStatementTotalAmount() {
+        setupMultipleRegularMovieRentals();
 
         assertThat(statement.calculateTotalAmount()).isEqualTo(7.5);
+    }
+
+    @Test
+    void shouldCalculateMultipleRegularStatementFrequentRenterPoints() {
+        setupMultipleRegularMovieRentals();
+
         assertThat(statement.calculateFrequentRenterPoints()).isEqualTo(3);
     }
 
     @Test
-    void testMultipleRegularStatementFormat() {
-        statement.add(new Rental(regular1, 1));
-        statement.add(new Rental(regular2, 2));
-        statement.add(new Rental(regular3, 3));
+    void shouldFormatMultipleRegularStatementCorrectly() {
+        setupMultipleRegularMovieRentals();
 
         assertThat(statement.generate()).isEqualTo("Rental Record for Customer\n" +
                 "\tRegular 1\t2.0\n" +
@@ -60,6 +65,21 @@ class VideoStoreTest {
                 "\tRegular 3\t3.5\n" +
                 "You owed 7.5\n" +
                 "You earned 3 frequent renter points\n");
+    }
+
+    private void setupTwoNewReleaseMovieRentals() {
+        statement.add(new Rental(newReleaseMovie1, 3));
+        statement.add(new Rental(newReleaseMovie2, 3));
+    }
+
+    private void setupSingleChildrensMovieRental() {
+        statement.add(new Rental(childrensMovie, 3));
+    }
+
+    private void setupMultipleRegularMovieRentals() {
+        statement.add(new Rental(regular1, 1));
+        statement.add(new Rental(regular2, 2));
+        statement.add(new Rental(regular3, 3));
     }
 
 }
