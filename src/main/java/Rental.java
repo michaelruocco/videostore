@@ -14,11 +14,11 @@ public class Rental {
     }
 
     public double calculateAmount() {
-        return movie.determineAmount(daysRented);
+        return movie.calculateAmount(daysRented);
     }
 
     public int calculateFrequentRenterPoints() {
-        return movie.determineFrequentRenterPoints(daysRented);
+        return movie.calculateFrequentRenterPoints(daysRented);
     }
 
 }

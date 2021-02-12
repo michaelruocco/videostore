@@ -4,12 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class VideoStoreTest {
 
-    private final Movie newReleaseMovie1 = new Movie("New Release 1", Movie.NEW_RELEASE);
-    private final Movie newReleaseMovie2 = new Movie("New Release 2", Movie.NEW_RELEASE);
-    private final Movie childrensMovie = new Movie("Childrens", Movie.CHILDRENS);
-    private final Movie regular1 = new Movie("Regular 1", Movie.REGULAR);
-    private final Movie regular2 = new Movie("Regular 2", Movie.REGULAR);
-    private final Movie regular3 = new Movie("Regular 3", Movie.REGULAR);
+    private final Movie newReleaseMovie1 = new NewReleaseMovie("New Release 1");
+    private final Movie newReleaseMovie2 = new NewReleaseMovie("New Release 2");
+    private final Movie childrensMovie = new ChildrensMovie("Childrens");
+    private final Movie regular1 = new RegularMovie("Regular 1");
+    private final Movie regular2 = new RegularMovie("Regular 2");
+    private final Movie regular3 = new RegularMovie("Regular 3");
 
     private final Statement statement = new Statement("Customer");
 
