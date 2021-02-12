@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class Customer {
 
@@ -33,14 +32,10 @@ public class Customer {
     public String statement() {
         totalAmount = 0;
         frequentRenterPoints = 0;
-        Iterator<Rental> rentals = this.rentals.iterator();
         String result = "Rental Record for " + getName() + "\n";
 
-        while (rentals.hasNext()) {
+        for (Rental each : rentals) {
             double thisAmount = 0;
-            Rental each = rentals.next();
-
-            // determines the amount for each line
             switch (each.getMovie().getPriceCode()) {
                 case Movie.REGULAR:
                     thisAmount += 2;
