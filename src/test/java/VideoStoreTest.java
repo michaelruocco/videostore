@@ -14,6 +14,8 @@ class VideoStoreTest {
                 "\tThe Cell\t9.0\n" +
                 "You owed 9.0\n" +
                 "You earned 2 frequent renter points\n");
+        assertThat(customer.getTotalAmount()).isEqualTo(9.0);
+        assertThat(customer.getFrequentRenterPoints()).isEqualTo(2);
     }
 
     @Test
@@ -26,6 +28,8 @@ class VideoStoreTest {
                 "\tThe Tigger Movie\t9.0\n" +
                 "You owed 18.0\n" +
                 "You earned 4 frequent renter points\n");
+        assertThat(customer.getTotalAmount()).isEqualTo(18.0);
+        assertThat(customer.getFrequentRenterPoints()).isEqualTo(4);
     }
 
     @Test
@@ -36,6 +40,8 @@ class VideoStoreTest {
                 "\tThe Tigger Movie\t1.5\n" +
                 "You owed 1.5\n" +
                 "You earned 1 frequent renter points\n");
+        assertThat(customer.getTotalAmount()).isEqualTo(1.5);
+        assertThat(customer.getFrequentRenterPoints()).isEqualTo(1);
     }
 
     @Test

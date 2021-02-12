@@ -7,6 +7,8 @@ public class Customer {
 
     private final String name;
     private final Collection<Rental> rentals = new ArrayList<>();
+    private double totalAmount;
+    private int frequentRenterPoints;
 
     public Customer(String name) {
         this.name = name;
@@ -20,9 +22,17 @@ public class Customer {
         return name;
     }
 
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public int getFrequentRenterPoints() {
+        return frequentRenterPoints;
+    }
+
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
+        totalAmount = 0;
+        frequentRenterPoints = 0;
         Iterator<Rental> rentals = this.rentals.iterator();
         String result = "Rental Record for " + getName() + "\n";
 
@@ -61,7 +71,6 @@ public class Customer {
 
         result += "You owed " + totalAmount + "\n";
         result += "You earned " + frequentRenterPoints + " frequent renter points\n";
-
 
         return result;
     }
