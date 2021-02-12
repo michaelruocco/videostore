@@ -1,3 +1,5 @@
+package videostore;
+
 import org.junit.jupiter.api.Test;
 import videostore.movie.ChildrensMovie;
 import videostore.movie.Movie;
@@ -63,7 +65,7 @@ class VideoStoreTest {
     void shouldFormatMultipleRegularStatementCorrectly() {
         setupMultipleRegularMovieRentals();
 
-        assertThat(statement.generate()).isEqualTo("Rental Record for Customer\n" +
+        assertThat(statement.generate()).isEqualTo("videostore.Rental Record for Customer\n" +
                 "\tRegular 1\t2.0\n" +
                 "\tRegular 2\t2.0\n" +
                 "\tRegular 3\t3.5\n" +

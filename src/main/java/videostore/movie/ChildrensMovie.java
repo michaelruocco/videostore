@@ -1,4 +1,4 @@
-
+package videostore.movie;
 
 public class ChildrensMovie extends Movie {
 

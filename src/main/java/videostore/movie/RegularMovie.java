@@ -1,4 +1,6 @@
+package videostore.movie;
 
+import videostore.movie.Movie;
 
 public class RegularMovie extends Movie {
 

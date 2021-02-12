@@ -1,10 +1,13 @@
+package videostore.movie;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ChildrensMovieTest {
 
-    private final Movie movie = new ChildrensMovie("Childrens Movie");
+    private final Movie movie = new ChildrensMovie("Childrens videostore.movie.Movie");
 
     @Test
     void shouldCalculateAmount() {

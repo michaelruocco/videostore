@@ -1,4 +1,4 @@
-
+package videostore.movie;
 
 public abstract class Movie {
 
