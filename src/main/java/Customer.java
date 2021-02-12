@@ -51,13 +51,11 @@ public class Customer {
     }
 
     private String rentalLine(Rental rental) {
-        double rentalAmount = rental.determineAmount();
         frequentRenterPoints += rental.determineFrequentRenterPoints();
+        double rentalAmount = rental.determineAmount();
         totalAmount += rentalAmount;
         return formatRentalLine(rental, rentalAmount);
     }
-
-
 
     private String formatRentalLine(Rental rental, double rentalAmount) {
         return String.format("\t%s\t%.1f%n", rental.getTitle(), rentalAmount);
