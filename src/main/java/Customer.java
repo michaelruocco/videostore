@@ -17,10 +17,6 @@ public class Customer {
         rentals.add(rental);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public double getTotalAmount() {
         return totalAmount;
     }
@@ -30,9 +26,24 @@ public class Customer {
     }
 
     public String statement() {
-        initialize();
+        clearTotals();
         String text = header();
+        text += rentalLines();
+        text += footer();
+        return text;
+    }
 
+    private void clearTotals() {
+        totalAmount = 0;
+        frequentRenterPoints = 0;
+    }
+
+    private String header() {
+        return String.format("Rental Record for %s%n", name);
+    }
+
+    private String rentalLines() {
+        String rentalLines = "";
         for (Rental each : rentals) {
             double thisAmount = 0;
             switch (each.getMovie().getPriceCode()) {
@@ -57,25 +68,15 @@ public class Customer {
                     && each.getDaysRented() > 1)
                 frequentRenterPoints++;
 
-            text += "\t" + each.getMovie().getTitle() + "\t"
+            rentalLines += "\t" + each.getMovie().getTitle() + "\t"
                     + thisAmount + "\n";
             totalAmount += thisAmount;
-
         }
-
-        text += "You owed " + totalAmount + "\n";
-        text += "You earned " + frequentRenterPoints + " frequent renter points\n";
-
-        return text;
+        return rentalLines;
     }
 
-    private void initialize() {
-        totalAmount = 0;
-        frequentRenterPoints = 0;
-    }
-
-    private String header() {
-        return "Rental Record for " + name + "\n";
+    private String footer() {
+        return String.format("You owed %.1f%nYou earned %d frequent renter points%n", totalAmount, frequentRenterPoints);
     }
 
 }
