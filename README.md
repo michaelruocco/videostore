@@ -7,3 +7,15 @@ in the initial state but set up as a gradle project and added a noddy github act
 the tests when any code is pushed.
 
 It is intended to be used for forking to perform training / mentoring exercises.
+
+## Useful Commands
+
+```gradle
+// cleans build directories
+// formats code
+// builds code
+// runs tests
+// checks for gradle issues
+// checks dependency versions
+./gradlew clean dependencyUpdates lintGradle spotlessApply build
+```
