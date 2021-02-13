@@ -1,16 +1,13 @@
 package videostore.movie;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public abstract class Movie {
 
+    @Getter
     private final String title;
-
-    protected Movie(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
 
     public abstract double calculateAmount(int daysRented);
 

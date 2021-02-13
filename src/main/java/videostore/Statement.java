@@ -1,5 +1,7 @@
 package videostore;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,16 +9,13 @@ import java.util.stream.Collectors;
 
 import static java.lang.System.lineSeparator;
 
+@RequiredArgsConstructor
 public class Statement {
 
     private static final String BLANK_LINE = "";
 
     private final String customerName;
     private final Collection<Rental> rentals = new ArrayList<>();
-
-    public Statement(String customerName) {
-        this.customerName = customerName;
-    }
 
     public void add(Rental rental) {
         rentals.add(rental);

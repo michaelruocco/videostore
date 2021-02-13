@@ -1,16 +1,13 @@
 package videostore;
 
+import lombok.RequiredArgsConstructor;
 import videostore.movie.Movie;
 
+@RequiredArgsConstructor
 public class Rental {
 
     private final Movie movie;
     private final int daysRented;
-
-    public Rental(Movie movie, int daysRented) {
-        this.movie = movie;
-        this.daysRented = daysRented;
-    }
 
     public String getTitle() {
         return movie.getTitle();
