@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class VideoStoreTest {
 
-    private final Movie newReleaseMovie1 = new NewReleaseMovie("New Release 1");
-    private final Movie newReleaseMovie2 = new NewReleaseMovie("New Release 2");
-    private final Movie childrensMovie = new ChildrensMovie("Childrens");
+    private final Movie newRelease1 = new NewReleaseMovie("New Release 1");
+    private final Movie newRelease2 = new NewReleaseMovie("New Release 2");
+    private final Movie childrens = new ChildrensMovie("Childrens");
     private final Movie regular1 = new RegularMovie("Regular 1");
     private final Movie regular2 = new RegularMovie("Regular 2");
     private final Movie regular3 = new RegularMovie("Regular 3");
@@ -65,7 +65,7 @@ class VideoStoreTest {
     void shouldFormatMultipleRegularStatementCorrectly() {
         setupMultipleRegularMovieRentals();
 
-        assertThat(statement.generate()).isEqualTo("videostore.Rental Record for Customer\n" +
+        assertThat(statement.generate()).isEqualTo("Rental Record for Customer\n" +
                 "\tRegular 1\t2.0\n" +
                 "\tRegular 2\t2.0\n" +
                 "\tRegular 3\t3.5\n" +
@@ -74,12 +74,12 @@ class VideoStoreTest {
     }
 
     private void setupTwoNewReleaseMovieRentals() {
-        statement.add(new Rental(newReleaseMovie1, 3));
-        statement.add(new Rental(newReleaseMovie2, 3));
+        statement.add(new Rental(newRelease1, 3));
+        statement.add(new Rental(newRelease2, 3));
     }
 
     private void setupSingleChildrensMovieRental() {
-        statement.add(new Rental(childrensMovie, 3));
+        statement.add(new Rental(childrens, 3));
     }
 
     private void setupMultipleRegularMovieRentals() {
