@@ -1,10 +1,15 @@
 package videostore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import static java.lang.System.lineSeparator;
+
 public class Statement {
+
+    private static final String BLANK_LINE = "";
 
     private final String customerName;
     private final Collection<Rental> rentals = new ArrayList<>();
@@ -30,20 +35,21 @@ public class Statement {
     }
 
     public String generate() {
-        String text = header();
-        text += rentalLines();
-        text += footer();
-        return text;
+        Collection<String> lines = new ArrayList<>();
+        lines.add(header());
+        lines.addAll(rentalLines());
+        lines.addAll(footer());
+        return String.join(lineSeparator(), lines);
     }
 
     private String header() {
-        return String.format("Rental Record for %s%n", customerName);
+        return String.format("Rental Record for %s", customerName);
     }
 
-    private String rentalLines() {
+    private Collection<String> rentalLines() {
         return rentals.stream()
                 .map(this::toRentalLine)
-                .collect(Collectors.joining());
+                .collect(Collectors.toList());
     }
 
     private String toRentalLine(Rental rental) {
@@ -51,13 +57,23 @@ public class Statement {
     }
 
     private String formatRentalLine(Rental rental) {
-        return String.format("\t%s\t%.1f%n", rental.getTitle(), rental.calculateAmount());
+        return String.format("\t%s\t%.1f", rental.getTitle(), rental.calculateAmount());
     }
 
-    private String footer() {
-        return String.format("You owed %.1f%n" +
-                        "You earned %d frequent renter points%n",
-                calculateTotalAmount(), calculateFrequentRenterPoints());
+    private Collection<String> footer() {
+        return Arrays.asList(
+                amountOwedLine(),
+                frequentRenterPointsLine(),
+                BLANK_LINE
+        );
+    }
+
+    private String amountOwedLine() {
+        return String.format("You owed %.1f", calculateTotalAmount());
+    }
+
+    private String frequentRenterPointsLine() {
+        return String.format("You earned %d frequent renter points", calculateFrequentRenterPoints());
     }
 
 }
