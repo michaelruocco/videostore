@@ -1,7 +1,7 @@
 plugins {
     id "java-library"
-    id "com.github.ben-manes.versions" version "0.36.0"
-    id "com.diffplug.spotless" version "5.10.1"
+    id "com.github.ben-manes.versions" version "0.38.0"
+    id "com.diffplug.spotless" version "5.11.0"
     id "nebula.lint" version "16.17.0"
 }
 
