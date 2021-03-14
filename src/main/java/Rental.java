@@ -1,19 +1,18 @@
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@AllArgsConstructor
+@Getter
 public class Rental
 {
-	public Rental (Movie movie, int daysRented) {
-		this.movie 		= movie;
-		this.daysRented = daysRented;
-	}
-	
-	public int getDaysRented () {
-		return daysRented;
-	}
-	
-	public Movie getMovie () {
-		return movie;
-	}
-	
 	private Movie movie;
 	private int daysRented;
+
+	public Double getRentalAmount() {
+		return movie.getRentalAmount(daysRented);
+	}
+
+	public int getFrequentRenterPoints() {
+		return movie.getFrequenRenterPoints(daysRented);
+	}
 }
