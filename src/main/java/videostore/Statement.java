@@ -12,25 +12,11 @@ import static java.lang.System.lineSeparator;
 @RequiredArgsConstructor
 public class Statement {
 
-    private static final String BLANK_LINE = "";
-
     private final String customerName;
     private final Collection<Rental> rentals = new ArrayList<>();
 
     public void add(Rental rental) {
         rentals.add(rental);
-    }
-
-    public double calculateTotalAmount() {
-        return rentals.stream()
-                .mapToDouble(Rental::calculateAmount)
-                .sum();
-    }
-
-    public int calculateFrequentRenterPoints() {
-        return rentals.stream()
-                .mapToInt(Rental::calculateFrequentRenterPoints)
-                .sum();
     }
 
     public String generate() {
@@ -52,18 +38,13 @@ public class Statement {
     }
 
     private String toRentalLine(Rental rental) {
-        return formatRentalLine(rental);
-    }
-
-    private String formatRentalLine(Rental rental) {
         return String.format("\t%s\t%.1f", rental.getTitle(), rental.calculateAmount());
     }
 
     private Collection<String> footer() {
         return Arrays.asList(
                 amountOwedLine(),
-                frequentRenterPointsLine(),
-                BLANK_LINE
+                frequentRenterPointsLine()
         );
     }
 
@@ -72,7 +53,19 @@ public class Statement {
     }
 
     private String frequentRenterPointsLine() {
-        return String.format("You earned %d frequent renter points", calculateFrequentRenterPoints());
+        return String.format("You earned %d frequent renter points%n", calculateFrequentRenterPoints());
+    }
+
+    private double calculateTotalAmount() {
+        return rentals.stream()
+                .mapToDouble(Rental::calculateAmount)
+                .sum();
+    }
+
+    private int calculateFrequentRenterPoints() {
+        return rentals.stream()
+                .mapToInt(Rental::calculateFrequentRenterPoints)
+                .sum();
     }
 
 }
