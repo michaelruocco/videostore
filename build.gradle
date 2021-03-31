@@ -8,4 +8,6 @@ repositories {
 
 dependencies {
     testCompile "junit:junit:4.13.1"
+    compileOnly "org.projectlombok:lombok:1.16.16"
+    annotationProcessor 'org.projectlombok:lombok:1.16.16'
 }
