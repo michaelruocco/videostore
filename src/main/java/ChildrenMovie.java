@@ -1,7 +1,7 @@
 public class ChildrenMovie extends Movie {
 
     public ChildrenMovie(String title) {
-        super(title, PriceCode.CHILDRENS);
+        super(title);
     }
 
     @Override

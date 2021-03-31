@@ -1,4 +1,5 @@
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @AllArgsConstructor
+@Getter
 public class CustomerRentals {
 
     private Customer customer;
@@ -22,30 +24,5 @@ public class CustomerRentals {
 
     public void addRental(Rental rental) {
         rentals.add(rental);
-    }
-
-    public String generateStatement() {
-        double 	totalAmount = 0;
-        int	frequentRenterPoints = 0;
-        Iterator<Rental> iterator = rentals.iterator();
-        String result = "Rental Record for " + customer.getName() + "\n";
-
-        while (iterator.hasNext()) {
-            double 	thisAmount = 0;
-            Rental rental = iterator.next();
-            thisAmount = rental.getRentalAmount();
-            totalAmount += thisAmount;
-            frequentRenterPoints += rental.getFrequentRenterPoints();
-
-            result += "\t" + rental.getMovie ().getTitle () + "\t"
-                    + (thisAmount) + "\n";
-
-        }
-
-        result += "You owed " + (totalAmount) + "\n";
-        result += "You earned " + (frequentRenterPoints) + " frequent renter points\n";
-
-
-        return result;
     }
 }
