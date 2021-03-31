@@ -8,13 +8,13 @@ public class CustomerRentalStatement {
     private CustomerRentals customerRentals;
 
     public String generateStatement() {
-        double 	totalAmount = 0;
+        double totalAmount = 0;
         int	frequentRenterPoints = 0;
         Iterator<Rental> iterator = customerRentals.getRentals().iterator();
         String result = "Rental Record for " + customerRentals.getCustomer().getName() + "\n";
 
         while (iterator.hasNext()) {
-            double 	thisAmount = 0;
+            double thisAmount = 0;
             Rental rental = iterator.next();
             thisAmount = rental.getRentalAmount();
             totalAmount += thisAmount;
@@ -27,7 +27,6 @@ public class CustomerRentalStatement {
 
         result += "You owed " + (totalAmount) + "\n";
         result += "You earned " + (frequentRenterPoints) + " frequent renter points\n";
-
 
         return result;
     }
